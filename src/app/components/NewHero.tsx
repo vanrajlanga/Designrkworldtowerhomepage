@@ -1,5 +1,5 @@
-import bannerImage from "figma:asset/f30591fcbd8b34bd3aafcb6c96e5eb19414afaf4.png";
 import { Home, Users, Calendar } from "lucide-react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function NewHero() {
   const quickLinks = [
@@ -28,8 +28,8 @@ export function NewHero() {
       {/* Hero Image Section */}
       <div className="relative h-[500px] md:h-[600px] flex items-center">
         <div className="absolute inset-0">
-          <img
-            src={bannerImage}
+          <ImageWithFallback
+            src="https://images.unsplash.com/photo-1760246964044-1384f71665b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjb3Jwb3JhdGUlMjBvZmZpY2UlMjBidWlsZGluZyUyMGV4dGVyaW9yfGVufDF8fHx8MTc3MzQ3MDQxMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
             alt="RK World Tower Building"
             className="w-full h-full object-cover"
           />

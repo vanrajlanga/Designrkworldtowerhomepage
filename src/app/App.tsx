@@ -1,5 +1,6 @@
 import { NewHeader } from "./components/NewHeader";
 import { NewHero } from "./components/NewHero";
+import { CallToAction } from "./components/CallToAction";
 import { Announcements } from "./components/Announcements";
 import { UpcomingEvents } from "./components/UpcomingEvents";
 import { About } from "./components/About";
@@ -18,6 +19,7 @@ export default function App() {
       <NewHeader />
       <main>
         <NewHero />
+        <CallToAction />
         <Announcements />
         <UpcomingEvents />
         <About />
