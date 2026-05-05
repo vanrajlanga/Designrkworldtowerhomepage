@@ -3,7 +3,9 @@ import { NewHeader } from "./NewHeader";
 import { NewFooter } from "./NewFooter";
 import { FileText, LogOut, Lock, Mail, Eye, EyeOff, FolderOpen, BookOpen, Shield, Receipt, Scale, Landmark, ClipboardList, Settings, Heart, Briefcase } from "lucide-react";
 
-const API_BASE = "http://127.0.0.1:8000/api";
+const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+  ? "http://127.0.0.1:8000/api"
+  : "https://crm.rkwt.in/api";
 
 interface Document {
   id: number;
