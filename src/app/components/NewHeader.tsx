@@ -6,12 +6,13 @@ export function NewHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Amenities", href: "#amenities" },
-    { label: "Gallery", href: "#gallery" },
-    { label: "Events", href: "#events" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/#home" },
+    { label: "About", href: "/#about" },
+    { label: "Amenities", href: "/#amenities" },
+    { label: "Gallery", href: "/#gallery" },
+    { label: "Events", href: "/#events" },
+    { label: "Docs", href: "/docs" },
+    { label: "Contact", href: "/#contact" },
   ];
 
   return (

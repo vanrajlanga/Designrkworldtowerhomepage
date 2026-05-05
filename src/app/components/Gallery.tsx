@@ -1,6 +1,6 @@
-import img1 from "figma:asset/de4cfef857a482a0de1cca3d0c727872b4a87b2e.png";
-import img2 from "figma:asset/3bc2c1c8d0b22e815650c8bfb6c980e446bd8fac.png";
-import img3 from "figma:asset/b5ba2157b6e5f339a7da6a0881dbcec1fadce6c4.png";
+import img1 from "../../assets/de4cfef857a482a0de1cca3d0c727872b4a87b2e.png";
+import img2 from "../../assets/3bc2c1c8d0b22e815650c8bfb6c980e446bd8fac.png";
+import img3 from "../../assets/b5ba2157b6e5f339a7da6a0881dbcec1fadce6c4.png";
 import { useState } from "react";
 import { X } from "lucide-react";
 

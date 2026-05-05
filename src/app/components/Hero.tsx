@@ -1,4 +1,4 @@
-import bannerImage from "figma:asset/f30591fcbd8b34bd3aafcb6c96e5eb19414afaf4.png";
+import bannerImage from "../../assets/f30591fcbd8b34bd3aafcb6c96e5eb19414afaf4.png";
 
 export function Hero() {
   return (
