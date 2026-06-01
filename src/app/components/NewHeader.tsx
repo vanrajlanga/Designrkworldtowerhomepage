@@ -1,5 +1,5 @@
 import { Logo } from "./Logo";
-import { Menu, X, Search, Phone } from "lucide-react";
+import { Menu, X, Search, Phone, LogIn } from "lucide-react";
 import { useState } from "react";
 
 export function NewHeader() {
@@ -45,6 +45,15 @@ export function NewHeader() {
               <Phone size={16} />
               <span>+91 76005 17544</span>
             </div>
+            <a
+              href="https://crm.rkwt.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-yellow-400 text-[#2B2D42] px-4 py-1.5 rounded text-sm font-semibold hover:bg-yellow-300 transition-colors"
+            >
+              <LogIn size={16} />
+              Login
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -69,6 +78,15 @@ export function NewHeader() {
                 {item.label}
               </a>
             ))}
+            <a
+              href="https://crm.rkwt.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-yellow-400 text-[#2B2D42] px-4 py-1.5 rounded text-sm font-semibold hover:bg-yellow-300 transition-colors w-fit"
+            >
+              <LogIn size={16} />
+              Login
+            </a>
           </nav>
         )}
       </div>
