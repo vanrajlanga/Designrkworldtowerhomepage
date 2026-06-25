@@ -306,7 +306,7 @@ export function TermsOfService() {
       content: (
         <>
           <p className="text-gray-600 leading-relaxed text-sm">
-            Your privacy is important to us. Our collection, use, and protection of your personal information is governed by our Privacy Policy, which is available at <a href="#/privacy-policy" className="text-yellow-600 hover:text-yellow-700 underline">rkwt.in/#privacy-policy</a>. By using our Services, you consent to the data practices described in the Privacy Policy.
+            Your privacy is important to us. Our collection, use, and protection of your personal information is governed by our Privacy Policy, which is available at <a href="#privacy-policy" className="text-yellow-600 hover:text-yellow-700 underline">rkwt.in/#privacy-policy</a>. By using our Services, you consent to the data practices described in the Privacy Policy.
           </p>
           <p className="text-gray-600 leading-relaxed text-sm mt-3">
             We implement industry-standard security measures to protect your personal data. However, no method of electronic storage or transmission is completely secure, and we cannot guarantee absolute security.

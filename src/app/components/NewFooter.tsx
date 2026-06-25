@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Logo } from "./Logo";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 
@@ -108,12 +107,12 @@ export function NewFooter() {
               &copy; {new Date().getFullYear()} RK World Tower Building Association. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
-              <Link to="/privacy-policy" onClick={() => window.scrollTo(0, 0)} className="text-gray-400 hover:text-yellow-400 transition-colors">
+              <a href="#privacy-policy" onClick={() => window.scrollTo(0, 0)} className="text-gray-400 hover:text-yellow-400 transition-colors">
                 Privacy Policy
-              </Link>
-              <Link to="/termsofservice" onClick={() => window.scrollTo(0, 0)} className="text-gray-400 hover:text-yellow-400 transition-colors">
+              </a>
+              <a href="#termsofservice" onClick={() => window.scrollTo(0, 0)} className="text-gray-400 hover:text-yellow-400 transition-colors">
                 Terms of Service
-              </Link>
+              </a>
             </div>
           </div>
         </div>
