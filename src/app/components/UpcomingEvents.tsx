@@ -1,39 +1,68 @@
+import { useState, useEffect } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { Calendar, MapPin, Clock, Users } from "lucide-react";
+import { Calendar, MapPin, Clock } from "lucide-react";
+
+const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+  ? "http://127.0.0.1:8000/api"
+  : "https://crm.rkwt.in/api";
+
+interface EventData {
+  id: number;
+  event_name: string;
+  organization: string | null;
+  where: string;
+  description: string;
+  start_date_time: string;
+  end_date_time: string;
+  image_url: string | null;
+}
 
 export function UpcomingEvents() {
-  const events = [
-    {
-      date: "20",
-      month: "MAR",
-      title: "Business Networking Meet",
-      time: "6:00 PM - 8:00 PM",
-      location: "Conference Hall - 10th Floor",
-      attendees: "All Tenants Welcome",
-      description: "Join fellow business professionals for an evening of networking and collaboration. Connect with other companies in the building.",
-      image: "https://images.unsplash.com/photo-1763731374100-24ee3f91a896?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjBldmVudCUyMGdhdGhlcmluZyUyMHBlb3BsZXxlbnwxfHx8fDE3NzMzNzkyNzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      date: "25",
-      month: "MAR",
-      title: "Digital Marketing Workshop",
-      time: "2:00 PM - 5:00 PM",
-      location: "Seminar Room",
-      attendees: "Registration Required",
-      description: "Expert-led workshop on latest digital marketing trends and strategies. Enhance your business's online presence.",
-      image: "https://images.unsplash.com/photo-1760259906119-8b914731e996?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidWlsZGluZyUyMGNvbW11bml0eSUyMGdhcmRlbiUyMHJvb2Z0b3B8ZW58MXx8fHwxNzczNDYzMTgwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      date: "30",
-      month: "MAR",
-      title: "Fire Safety & Compliance Training",
-      time: "11:00 AM - 1:00 PM",
-      location: "Ground Floor Lobby",
-      attendees: "Mandatory for All",
-      description: "Annual fire safety training and emergency evacuation procedures. Ensuring workplace safety and compliance.",
-      image: "https://images.unsplash.com/photo-1761971975769-97e598bf526b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBhcGFydG1lbnQlMjBhbWVuaXRpZXMlMjBneW18ZW58MXx8fHwxNzczNDYzMTgwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-  ];
+  const [events, setEvents] = useState<EventData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/public/events`)
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.success) {
+          setEvents(json.data);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return (
+      <section id="events" className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl mb-2 text-[#2B2D42]">Upcoming Events</h2>
+          <p className="text-gray-600">Loading events...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (events.length === 0) {
+    return null;
+  }
+
+  const formatDate = (dateStr: string) => {
+    const d = new Date(dateStr);
+    return {
+      date: d.getDate().toString(),
+      month: d.toLocaleString("en-US", { month: "short" }).toUpperCase(),
+    };
+  };
+
+  const formatTime = (startStr: string, endStr: string) => {
+    const start = new Date(startStr);
+    const end = new Date(endStr);
+    const fmt = (d: Date) =>
+      d.toLocaleString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
+    return `${fmt(start)} - ${fmt(end)}`;
+  };
 
   return (
     <section id="events" className="py-16 bg-gray-50">
@@ -44,48 +73,49 @@ export function UpcomingEvents() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
-            >
-              <div className="relative h-48">
-                <ImageWithFallback
-                  src={event.image}
-                  alt={event.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-4 left-4 bg-yellow-400 text-[#2B2D42] text-center px-4 py-3 rounded-lg shadow-lg">
-                  <div className="text-3xl leading-none">{event.date}</div>
-                  <div className="text-sm uppercase tracking-wide">{event.month}</div>
-                </div>
-              </div>
-              
-              <div className="p-6">
-                <h3 className="text-xl mb-4 text-[#2B2D42]">{event.title}</h3>
-                <p className="text-gray-600 text-sm mb-4">{event.description}</p>
-                
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Clock size={16} className="text-yellow-600" />
-                    <span>{event.time}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <MapPin size={16} className="text-yellow-600" />
-                    <span>{event.location}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Users size={16} className="text-yellow-600" />
-                    <span>{event.attendees}</span>
+          {events.map((event) => {
+            const { date, month } = formatDate(event.start_date_time);
+            return (
+              <div
+                key={event.id}
+                className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  {event.image_url ? (
+                    <img
+                      src={event.image_url}
+                      alt={event.event_name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-[#2B2D42] to-[#4A4E69] flex items-center justify-center">
+                      <Calendar size={64} className="text-yellow-400 opacity-30" />
+                    </div>
+                  )}
+                  <div className="absolute top-4 left-4 bg-yellow-400 text-[#2B2D42] text-center px-4 py-3 rounded-lg shadow-lg">
+                    <div className="text-3xl leading-none">{date}</div>
+                    <div className="text-sm uppercase tracking-wide">{month}</div>
                   </div>
                 </div>
-                
-                <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-[#2B2D42] px-6 py-3 rounded-lg transition-colors">
-                  Register Now
-                </button>
+
+                <div className="p-6">
+                  <h3 className="text-xl mb-4 text-[#2B2D42]">{event.event_name}</h3>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">{event.description}</p>
+
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <Clock size={16} className="text-yellow-600" />
+                      <span>{formatTime(event.start_date_time, event.end_date_time)}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <MapPin size={16} className="text-yellow-600" />
+                      <span>{event.where}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { FileText, CreditCard, Calendar, Monitor } from "lucide-react";
+import { FileText, CreditCard, Monitor } from "lucide-react";
 
 export function CallToAction() {
   const actions = [
@@ -19,15 +19,7 @@ export function CallToAction() {
       buttonText: "Request / Pay",
       link: "#contact",
     },
-    {
-      title: "Book Event Hall",
-      description: "Reserve our event hall for your corporate gatherings",
-      image: "https://images.unsplash.com/photo-1768508951405-10e83c4a2872?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxldmVudCUyMGhhbGwlMjBiYW5xdWV0JTIwYm9va2luZ3xlbnwxfHx8fDE3NzM0Njk0NDR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      icon: Calendar,
-      buttonText: "Book Now",
-      link: "#contact",
-    },
-    {
+{
       title: "Book Digital Ad Board",
       description: "Advertise your business on our digital display boards",
       image: "https://images.unsplash.com/photo-1763671727638-5bc55bb9c980?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwYmlsbGJvYXJkJTIwYWR2ZXJ0aXNpbmclMjBkaXNwbGF5fGVufDF8fHx8MTc3MzQ2OTQ0NHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
@@ -47,7 +39,7 @@ export function CallToAction() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {actions.map((action, index) => {
             const Icon = action.icon;
             return (
